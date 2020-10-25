@@ -10,8 +10,36 @@ RSpec.describe "Posts", type: :request do
       	expect(response.status).to eq 200
       end
       it 'タイトルが正しく表示されていること' do
-      	expect(response.body).to include("新規投稿", "てすと")
+      	expect(response.body).to include("新規投稿")
       end
     end
+  end
+
+  describe '投稿一覧ページ' do
+  	context "投稿一覧ページが正しく表示される" do
+  	  before do
+  	  	get posts_index_path
+  	  end
+  	  it 'リクエストは200 OKとなること' do
+  	  	expect(response.status).to eq 200
+  	  end
+  	  it 'タイトルが正しく表示されること' do
+  	  	expect(response.body).to include("投稿一覧")
+  	  end
+  	end
+  end
+
+  describe '投稿詳細ページ' do
+  	context "投稿一覧ページが正しく表示される" do
+  	  before do
+  	  	get posts_show_path
+  	  end
+  	  it 'リクエストは200 OKとなること' do
+  	  	expect(response.status).to eq 200
+  	  end
+  	  it 'タイトルが正しく表示されること' do
+  	  	expect(response.body).to include("投稿詳細")
+  	  end
+  	end
   end
 end
